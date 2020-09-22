@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <main class="bg-light">
+      <h1 class="text-danger">
+        todos
+      </h1>
+      <div class="planner">
+        <div id="planner" class="input-group mb-3">
+          <div class="input-group-prepend">
+        <!--    <button class="btn btn-outline-secondary submit" type="submit"></button>    dropdown-toggle -->
+          </div>
+          <input type="text" class="form-control form-main" placeholder="What needs to be done?">
+          <input type="submit" name="" value="submit">
+        </div>
+
+        <div id="input-box">
+          <div class="task-input-box">
+
+          </div>
+        </div>
+        
+
+        <div class="footer">
+          <div class="task-counter">
+            3 items left
+          </div>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-light menu-all">All</button>
+            <button type="button" class="btn btn-light menu-active">Active</button>
+            <button type="button" class="btn btn-light menu-completed">Completed</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
