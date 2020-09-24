@@ -1,7 +1,7 @@
 
 let number = Number(localStorage.getItem('task_count'));
 let task = '';
-let n = 0;
+let n = 1;
 let n_task = 0;
 //localStorage.clear();
 
@@ -16,11 +16,19 @@ for (let i = 1; i <= number; i++) {
   addTask();
 }
 
+$('ul').on('keypress', '.task', function() {
+//$(this).find('[type="text"]').val();
+
+  console.log($(this).find('[type="text"]').val());
+  console.log($(this).data('order'));
+
+});
+
 
 function addTask () {
-      $('#add-task').find('ul').append('<li data order="' + n + '">' +
+      $('#add-task').find('ul').append('<li class="task" data-order="' + n + '">' +
       '<input type="checkbox" class="checkbox"/>' +
-      '<input class="task" type="text" name="input" value="' + task + '"/>' +
+      '<input type="text" name="input[]" value="' + task + '"/>' +
       '<button class="clear" type="button" name="button">' + 'x' + '</button>' +
       '</li>');
       ++n;
@@ -63,13 +71,6 @@ function addTask () {
 
 
 
-$('.task').keypress(function() {
-  //localStorage.setItem('task_count', number);
-  $(this).val() = localStorage.setItem('task_value[' + number + ']', task);
-
-  //console.log($(this).val());
-})
-
 
 
 $('.create-task').submit(function () {
@@ -96,10 +97,12 @@ console.log(n_task);
 
       throw "N == 3";
     }
+
+      localStorage.setItem('task_count', ++number);
     addTask();
   //  ++n_task;
 
-    localStorage.setItem('task_count', ++number);
+
     localStorage.setItem('task_value[' + number + ']', task);
     console.log(localStorage);
 
