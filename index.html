@@ -9,28 +9,31 @@
   </head>
   <body>
     <main class="bg-light">
-      <h1 class="text-danger">
-        todos
-      </h1>
+      <h1 class="text-danger"> todos </h1>
+
+
+
       <div class="planner">
-        <div id="planner" class="input-group mb-3">
-          <div class="input-group-prepend">
-        <!--    <button class="btn btn-outline-secondary submit" type="submit"></button>    dropdown-toggle -->
-          </div>
-          <input type="text" class="form-control form-main" placeholder="What needs to be done?">
+
+        <form class="create-task" action="index.html" method="post">
+          <input name="create-task" type="text" class="form-control form-main" placeholder="What needs to be done?">
           <input type="submit" name="" value="submit">
-        </div>
+        </form>
 
-        <div id="input-box">
-          <div class="task-input-box">
+        <form class="form-add-task" action="index.html" method="post">
+          <div id="add-task">
 
           </div>
-        </div>
-        
+        </form>
+
+
+
+
+
 
         <div class="footer">
           <div class="task-counter">
-            3 items left
+            3 tasks left
           </div>
           <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-light menu-all">All</button>
@@ -39,6 +42,9 @@
           </div>
         </div>
       </div>
+
+
+
     </main>
     <script src="script.js"></script>
   </body>
