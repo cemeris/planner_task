@@ -17,10 +17,11 @@ for (let i = 1; i <= number; i++) {
 }
 
 $('ul').on('keypress', '.task', function() {
-//$(this).find('[type="text"]').val();
 
   console.log($(this).find('[type="text"]').val());
   console.log($(this).data('order'));
+
+  localStorage.setItem('task_value[' + number + ']', task);
 
 });
 
@@ -57,7 +58,6 @@ function addTask () {
 
     //  console.log(n_task);
 
-
       if (!$(this).parent().find('[type="text"]').hasClass('checked')) {
         $(this).parent().find('[type="text"]').attr('disabled', false);
         $(this).attr('checked', false);
@@ -83,7 +83,7 @@ $('.create-task').submit(function () {
   //++n_task;
 
   $('.task-counter').find('span').replaceWith('' + n_task + '');
-console.log(n_task);
+  //console.log(n_task);
 
 
   try {
@@ -98,16 +98,15 @@ console.log(n_task);
       throw "N == 3";
     }
 
-      localStorage.setItem('task_count', ++number);
+    localStorage.setItem('task_count', ++number);
     addTask();
-  //  ++n_task;
-
 
     localStorage.setItem('task_value[' + number + ']', task);
+
     console.log(localStorage);
 
-    $('.task-counter').find('span').replaceWith('' + n_task + '');
 
+    $('.task-counter').find('span').replaceWith('' + n_task + '');
 
   }
 
