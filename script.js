@@ -13,7 +13,7 @@ if (number == null) {
 
 for (let i = 1; i <= number; i++) {
   task = localStorage.getItem('task_value[' + i + ']');
-  addTask();
+  addTask(task);
 }
 
 $('ul').on('keypress', '.task', function() {
@@ -26,7 +26,7 @@ $('ul').on('keypress', '.task', function() {
 });
 
 
-function addTask () {
+function addTask (task) {
       $('#add-task').find('ul').append('<li class="task" data-order="' + n + '">' +
       '<input type="checkbox" class="checkbox"/>' +
       '<input type="text" name="input[]" value="' + task + '"/>' +
@@ -43,18 +43,26 @@ function addTask () {
       $(this).attr('checked', true);
       --n_task;
 
-      $('.clear').click(function () {
-        $(this).parent().remove();
 
-        localStorage.removeItem('task_value[' + number + ']', task);
-        localStorage.setItem('task_count', number-1);
-        if (number == 0) {
-          localStorage.setItem('task_count', 0);
-          number = 0;
+
+        if ($('[type="text"]').hasClass('checked')) {
+          $('.clear').click(function () {
+          $(this).parent().remove();
+
+          localStorage.removeItem('task_value[' + number + ']', task);
+          localStorage.setItem('task_count', number-1);
+
+          if (number == 0) {
+            localStorage.setItem('task_count', 0);
+            number = 0;
+          }
+          });
         }
 
+
+
         console.log(n_task);
-      });
+
 
     //  console.log(n_task);
 
@@ -99,7 +107,7 @@ $('.create-task').submit(function () {
     }
 
     localStorage.setItem('task_count', ++number);
-    addTask();
+    addTask(task);
 
     localStorage.setItem('task_value[' + number + ']', task);
 
