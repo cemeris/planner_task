@@ -42,25 +42,6 @@ function addTask (task) {
       $(this).parent().find('[type="text"]').attr('disabled', true).toggleClass('checked');
       $(this).attr('checked', true);
       --n_task;
-
-
-
-        if ($('[type="text"]').hasClass('checked')) {
-          $('.clear').click(function () {
-          $(this).parent().remove();
-
-          localStorage.removeItem('task_value[' + number + ']', task);
-          localStorage.setItem('task_count', number-1);
-
-          if (number == 0) {
-            localStorage.setItem('task_count', 0);
-            number = 0;
-          }
-          });
-        }
-
-
-
         console.log(n_task);
 
 
@@ -76,6 +57,18 @@ function addTask (task) {
       $('.task-counter').find('span').text('' + n_task + '');
 
   });
+
+$('.clear').click(function () {
+$(this).parent().remove();
+
+localStorage.removeItem('task_value[' + number + ']', task);
+localStorage.setItem('task_count', number-1);
+
+if (number == 0) {
+  localStorage.setItem('task_count', 0);
+  number = 0;
+}
+});
 
 
 
