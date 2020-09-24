@@ -1,6 +1,7 @@
 
 let number = Number(localStorage.getItem('task_count'));
 let task = '';
+let n = 0;
 //localStorage.clear();
 
 if (number == null) {
@@ -8,77 +9,88 @@ if (number == null) {
   number = 0;
 }
 
-let n = 0;
+
+for (let i = 1; i <= number; i++) {
+  task = localStorage.getItem('task_value[' + i + ']');
+  addTask();
+}
+
 
 function addTask () {
-    let count = 0;
-
-    try {
-      if (n == 3) {
-        $('#planner').find('input[type=text]').attr( "disabled", true );
-        localStorage.setItem('task_count', 3);
-
-        throw "N == 3";
-      }
-      $('#input-box').find('.task-input-box').append('<div data order="' + number + '">' +
-      '<input type="radio" aria-label="Radio button for following text input" />' +
-      '<input type="text" aria-label="Text input with radio button" name="input[]" value="' + task + '"/>' +
+      $('.form-add-task').find('#add-task').append('<div data order="' + n + '">' +
+      '<input type="checkbox" class="checkbox"/>' +
+      '<input type="text" name="input" value="' + task + '"/>' +
       '<button class="clear" type="button" name="button">' + 'x' + '</button>' +
       '</div>');
-
-      localStorage.setItem('task_count', ++number);
-      localStorage.setItem('task_value[' + number + ']', task);
-
       ++n;
-    }
-    catch (e) {
-      console.log(e);
-    }
-
-//console.log(n);
-  $('#planner').find('input[type=text]').attr( "disabled", false );
-
-
-
-  $('div').find('input[type=radio]').click(function () {
-    event.preventDefault();
-      ++count;
-      //alert();
-
-      if (count % 2 == 1 ) {
-        $('#input-box').find('input[type=radio]').attr('checked', true);
-        $('#input-box').find('input[type=text]').attr( "disabled", true );
-        console.log(count);
-      }
-      else if (count % 2 == 0) {
-        $('#input-box').find('input[type=radio]').attr('checked', false);
-        $('#input-box').find('input[type=text]').attr( "disabled", false );
-        console.log(count);
-      }
-
-  });
-
-  $('.clear').click(function () {
-    event.preventDefault();
-  //alert();
-
-    $('#input-box').find('input[type=radio]').attr('checked', false);
-    $('#input-box').find('input[type=text]').val('').attr("disabled", false);
-    count = 0;
-  });
-
 }
 
 
 
-$('.input-group').click(function () {   //$('.input-group').submit(function () {
+
+  $('[type="checkbox"]').click(function () {
+
+      $(this).parent().find('[type="text"]').attr('disabled', true).toggleClass('checked');
+      $(this).attr('checked', true);
+
+
+      if (!$(this).parent().find('[type="text"]').hasClass('checked')) {
+        $(this).parent().find('[type="text"]').attr('disabled', false);
+        $(this).attr('checked', false);
+      }
+
+  });
+
+
+
+
+  $('.clear').click(function () {
+
+    $(this).parent().remove();
+
+
+
+    localStorage.removeItem('task_value[' + number + ']', task);
+    localStorage.setItem('task_count', --number);
+  });
+
+
+
+$('.create-task').submit(function () {
   event.preventDefault();
-  //alert();
-  let input = $(this).find('.form-main');
+
+  let input = $(this).find('input[type=text]');
   let task = input.val();
   let number = Number(localStorage.getItem('task_count'));
   input.val('');
 
-  addTask();
+
+  try {
+    if (number == 3) {
+
+      $('.create-task').find('input[type=text]').attr( "disabled", true );
+      $('.create-task').find('input[type=submit]').attr( "disabled", true );
+      localStorage.setItem('task_count', number);
+      console.log(task);
+
+      throw "N == 3";
+    }
+    addTask();
+
+    localStorage.setItem('task_count', ++number);
+    localStorage.setItem('task_value[' + number + ']', task);
+    console.log(localStorage);
+    //alert(task);
+  }
+
+  catch (e) {
+    console.log(e);
+  }
+  if (number < 3) {
+
+      $('.create-task').find('input[type=text]').attr( "disabled", false );
+      $('.create-task').find('input[type=submit]').attr( "disabled", false );
+
+  }
 
 });

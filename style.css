@@ -9,10 +9,16 @@ h1 {
   padding: 8px 0;
 }
 .planner {
-  width: 90%;
+  width: 95%;
   height: 250px;
   margin: auto;
 }
+.create-task {
+  display: flex;
+  justify-content: space-between;
+}
+
+
 .footer {
   display: flex;
   justify-content: space-between;
@@ -38,7 +44,7 @@ background-color: red;
 .clear:focus {
   outline: none;
 }
-input[type="radio"] {
+input[type="checkbox"] {
   margin-right: 10px;
 }
 input[type="text"] {
